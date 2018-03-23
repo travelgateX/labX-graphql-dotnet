@@ -4,7 +4,7 @@ FROM microsoft/dotnet:2.1-sdk-stretch AS build-env
 WORKDIR /app
 
 COPY ./src/*.csproj ./
-RUN dotnet restore -s http://nuget.xmltravelgate.com/nuget -s https://api.nuget.org/v3/index.json --no-cache
+RUN dotnet restore -s https://api.nuget.org/v3/index.json --no-cache
 
 COPY . ./
 RUN dotnet publish -c release -r linux-x64 -o /approot --framework netcoreapp2.1
