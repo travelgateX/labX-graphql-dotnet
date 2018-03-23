@@ -1,12 +1,12 @@
 # labx-graphql-dotnet
 
 ---
-Proyecto para probar la libreria dotnet para GraphQL.
+Proyecto para probar la librería dotnet para GraphQL.
 
 
-### GuÃ­a de usuario
+### Guía de usuario
 
-Libreria
+Librería
 ```
 https://github.com/graphql-dotnet/
 ```
@@ -18,7 +18,7 @@ https://github.com/travelgateX/labX-graphql-benchmarks
 
 Ejecutar dotnet build y dotnet run para iniciarlo, se inicia con: http://localhost/graphiql/
  	
-### GuÃ­a de instalaciÃ³n
+### Guía de instalación
 
 Hemos ultilizado los entornos Visual Studio Code y Visual Studio 2017 con el [SDK dotnet 2.1.10](https://www.microsoft.com/net/download/windows)
 
@@ -31,7 +31,7 @@ Hemos ultilizado los entornos Visual Studio Code y Visual Studio 2017 con el [SD
 "GraphQL.Client" Version="1.0.2"
 "Microsoft.AspNetCore.All" Version="2.0.0"
 
-### CÃ³mo contribuir
+### Cómo contribuir
 
 
 ### Autor/es
