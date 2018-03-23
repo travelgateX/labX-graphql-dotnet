@@ -11,6 +11,15 @@ namespace GraphQL.StarWars
         {
             Name = "Query";
 
+
+            Field<NonNullGraphType<ListGraphType<ReviewType>>>(
+                "review",
+              arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<EpisodeEnum>> { Name = "Episode", Description = "Episode of star wars" }
+              ),
+                 resolve: context => data.GetReview(context.GetArgument<Episodes>("Episode"))
+             );
+
             Field<CharacterInterface>(
                 "hero",
                 arguments: new QueryArguments(
