@@ -7,7 +7,7 @@ namespace GraphQL.StarWars.Resolve
 {
     public class HumanType : ObjectGraphType<Human>
     {
-        public HumanType(StarWarsData data)
+        public HumanType(StarWarsData data, ExternalData eData)
         {
             Name = "Human";
 
@@ -31,12 +31,17 @@ namespace GraphQL.StarWars.Resolve
                 resolve: context => context.Source.Friends
             );
 
-            Field<ListGraphType<StarShipType>>(
+            Field<ListGraphType<StarshipType>>(
                 "starships",
                 resolve: context => context.Source.Starships
             );
 
             Field<NonNullGraphType<ListGraphType<NonNullGraphType<EpisodeEnum>>>>("appearsIn", "Which movie they appear in.");
+
+            Field<HomeworldType>(
+                "homeworld",
+                resolve: context => eData.GetHomeWorld(null)
+            );
 
             Interface<CharacterInterface>();
         }

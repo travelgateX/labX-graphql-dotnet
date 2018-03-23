@@ -29,12 +29,22 @@ namespace GraphQL.StarWars.Data
                         query = query +@"
                             designation
                             language
-                            subEspecies
-                            homeworld
-                        }
+                            subEspecies {
+                                designation
+                                language
+                                subEspecies {
+                                    designation
+                                    homeworld {
+                                        name
+                                        species {
+                                            designation
+                                        }
+                                    }
+                                } 
+                            }
+                        }                        
                     }";
-
-            return GraphQLClientManager.getInstance().sendRequest<Specie>(query, "specie");
+            return GraphQLClientManager.getInstance().sendRequest<Specie>(query, "species");
         }
 
         public Task<Homeworld> GetHomeWorld(string id)
@@ -42,14 +52,30 @@ namespace GraphQL.StarWars.Data
             string query = @"
                     query{";
 
-                        if (!string.IsNullOrEmpty(id)){
+                    if (!string.IsNullOrEmpty(id)){
                             query = query + "homeworld(id:" + id +@") {";
-                        }else{
-                            query = query + "homeworld {";
-                        }
+                    }else{
+                        query = query + "homeworld {";
+                    }
                         query = query +@"
                             name
-                            species
+                            species {
+                                designation
+                                language
+                                subEspecies {
+                                    designation
+                                    language
+                                    subEspecies {
+                                        designation
+                                        homeworld {
+                                            name
+                                            species {
+                                                designation
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }";
             return GraphQLClientManager.getInstance().sendRequest<Homeworld>(query, "homeworld");
@@ -61,11 +87,22 @@ namespace GraphQL.StarWars.Data
                     query{
                         allHomeworlds {
                             name
-                            species{
+                            species {
                                 designation
                                 language
-                                subEspecies
-                                homeworld
+                                subEspecies {
+                                    designation
+                                    language
+                                    subEspecies {
+                                        designation
+                                        homeworld {
+                                            name
+                                            species {
+                                                designation
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }";

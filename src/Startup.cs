@@ -74,7 +74,7 @@ namespace Example
             services.AddSingleton<HumanType>();
             services.AddSingleton<ReviewInputType>();
             services.AddSingleton<DroidType>();
-            services.AddSingleton<StarShipType>();
+            services.AddSingleton<StarshipType>();
             services.AddSingleton<CharacterInterface>();
             services.AddSingleton<EpisodeEnum>();
             services.AddSingleton<HeighEnum>();

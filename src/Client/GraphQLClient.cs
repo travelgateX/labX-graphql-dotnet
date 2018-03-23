@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GraphQL.Client;
 using GraphQL.Common.Request;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace starwars.Client
 {

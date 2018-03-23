@@ -10,5 +10,7 @@ namespace GraphQL.StarWars.Types
         public float Height { get; set; }
 
         public Starship[] Starships { get; set; }
+
+        public Homeworld homeworld{ get; set; }
     }
 }
