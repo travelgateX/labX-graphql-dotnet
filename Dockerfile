@@ -1,17 +1,17 @@
 # -- Build -- #
-FROM microsoft/dotnet:2.0-sdk-jessie AS build-env
+FROM microsoft/dotnet:2.1-sdk-stretch AS build-env
 
 WORKDIR /app
 
-COPY ./src/$MAIN_CLASS/*.csproj ./
+COPY ./src/*.csproj ./
 RUN dotnet restore -s http://nuget.xmltravelgate.com/nuget -s https://api.nuget.org/v3/index.json --no-cache
 
-COPY . /app
-RUN dotnet publish -c release -o /approot --framework netcoreapp2.0
+COPY . ./
+RUN dotnet publish -c release -r linux-x64 -o /approot --framework netcoreapp2.1
 
 
 # -- Runtime -- #
-FROM microsoft/dotnet:2.0-runtime-jessie
+FROM microsoft/dotnet:2.1-runtime
 
 ARG MAIN_CLASS
 ENV MAIN_CLASS ${MAIN_CLASS:-undefined}
