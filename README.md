@@ -43,7 +43,7 @@ Equipo TravelGateX de .NET formado por:
 * Daniel Gonzalez
 * Sergi Roberti
 * Jose Martin
-*  *Y con ayuda de todo el equipo de TravelGateX*
+**Y con ayuda de todo el equipo de TravelGateX**
 
 ### Licencia 
 ---
