@@ -24,12 +24,11 @@ Hemos ultilizado los entornos Visual Studio Code y Visual Studio 2017 con el [SD
 
 
 #### Dependencias
-
-"GraphiQL" Version="1.1.0"
-"GraphQL" Version="2.0.0-alpha-820"
-"GraphQL.Authorization" Version="1.0.10-alpha-10"
-"GraphQL.Client" Version="1.0.2"
-"Microsoft.AspNetCore.All" Version="2.0.0"
+* "GraphiQL" Version="1.1.0"
+* "GraphQL" Version="2.0.0-alpha-820"
+* "GraphQL.Authorization" Version="1.0.10-alpha-10"
+* "GraphQL.Client" Version="1.0.2"
+* "Microsoft.AspNetCore.All" Version="2.0.0"
 
 ### Cómo contribuir
 
@@ -37,14 +36,14 @@ Hemos ultilizado los entornos Visual Studio Code y Visual Studio 2017 con el [SD
 ### Autor/es
 ---
 Equipo TravelGateX de .NET formado por:
-Ruben Caballero
-Benet Oliver
-Carlos Acedo
-Salvador Castell
-Daniel Gonzalez
-Sergi Roberti
-Jose Martin
-*Y con ayuda de todo el equipo de TravelGateX*
+* Ruben Caballero
+* Benet Oliver
+* Carlos Acedo
+* Salvador Castell
+* Daniel Gonzalez
+* Sergi Roberti
+* Jose Martin
+*  *Y con ayuda de todo el equipo de TravelGateX*
 
 ### Licencia 
 ---
