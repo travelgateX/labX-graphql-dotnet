@@ -17,6 +17,14 @@ https://github.com/travelgateX/labX-graphql-benchmarks
 ```
 
 Ejecutar dotnet build y dotnet run para iniciarlo, se inicia con: http://localhost/graphiql/
+
+
+```
+    $ docker build --build-arg="MAIN_CLASS=starwars" -t graphql-dotnet:latest .
+```
+```
+    $ winpty docker run --rm -p 8080:8080 -it graphql-dotnet:latest
+```
  	
 ### Guía de instalación
 
