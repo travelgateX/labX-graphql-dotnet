@@ -1,6 +1,9 @@
 using GraphQL;
 using GraphQL.Http;
 using GraphQL.StarWars;
+using GraphQL.StarWars.Data;
+using GraphQL.StarWars.Enum;
+using GraphQL.StarWars.Resolve;
 using GraphQL.StarWars.Types;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
@@ -70,7 +73,7 @@ namespace Example
             services.AddSingleton<StarWarsQuery>();
             services.AddSingleton<StarWarsMutation>();
             services.AddSingleton<HumanType>();
-            services.AddSingleton<HumanInputType>();
+            services.AddSingleton<ReviewInputType>();
             services.AddSingleton<DroidType>();
             services.AddSingleton<StarShipType>();
             services.AddSingleton<CharacterInterface>();

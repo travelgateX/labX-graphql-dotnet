@@ -1,7 +1,7 @@
-﻿using GraphQL.Types;
-using GraphQL.StarWars.Types;
+﻿using GraphQL.StarWars.Data;
+using GraphQL.Types;
 
-namespace GraphQL.StarWars.Types
+namespace GraphQL.StarWars.Resolve
 {
 
     //union SearchResult = Human | Droid | Starship
@@ -19,7 +19,7 @@ namespace GraphQL.StarWars.Types
             };
             var nestedObjType2 = new StarShipType(data)
             {
-                Name = "Starship"
+                Name = "StarShip"
             };
 
             AddPossibleType(nestedObjType);

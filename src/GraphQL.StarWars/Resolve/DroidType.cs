@@ -1,6 +1,9 @@
+using GraphQL.StarWars.Data;
+using GraphQL.StarWars.Enum;
+using GraphQL.StarWars.Types;
 using GraphQL.Types;
 
-namespace GraphQL.StarWars.Types
+namespace GraphQL.StarWars.Resolve
 {
     public class DroidType : ObjectGraphType<Droid>
     {
@@ -16,7 +19,7 @@ namespace GraphQL.StarWars.Types
 
             Field<ListGraphType<CharacterInterface>>(
                 "friends",
-                resolve: context => data.GetFriends(context.Source)
+                resolve: context => context.Source.Friends
             );
             Field<NonNullGraphType<ListGraphType<NonNullGraphType<EpisodeEnum>>>>("appearsIn", "Which movie they appear in.");
             Field(d => d.PrimaryFunction, nullable: true).Description("The primary function of the droid.");
