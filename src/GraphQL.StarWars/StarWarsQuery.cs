@@ -10,7 +10,7 @@ namespace GraphQL.StarWars
 {
     public class StarWarsQuery : ObjectGraphType<object>
     {
-        public StarWarsQuery(StarWarsData data)
+        public StarWarsQuery(StarWarsData data, ExternalData eData)
         {
             Name = "Query";
 
@@ -68,6 +68,27 @@ namespace GraphQL.StarWars
                     new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id", Description = "id of the starship" }
                 ),
                 resolve: context => data.GetStarShipByIdAsync(context.GetArgument<string>("id"))
+            );
+
+            Field<SpecieType>(
+                "species",
+                arguments: new QueryArguments(
+                    new QueryArgument<IdGraphType> { Name = "id", Description = "id of the specie" }
+                ),
+                resolve: context => eData.GetSpecie(context.GetArgument<string>("id"))
+            );
+
+            Field<HomeworldType>(
+                "homeworld",
+                arguments: new QueryArguments(
+                    new QueryArgument<IdGraphType> { Name = "id", Description = "id of the homeworld" }
+                ),
+                resolve: context => eData.GetHomeWorld(context.GetArgument<string>("id"))
+            );
+
+            Field<ListGraphType<NonNullGraphType<HomeworldType>>>(
+                "allHomeworlds",
+                resolve: context => eData.GetHomeWorlds()
             );
         }
     }

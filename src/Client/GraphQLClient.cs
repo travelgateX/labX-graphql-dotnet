@@ -15,7 +15,7 @@ namespace starwars.Client
             graphQLClient = new GraphQL.Client.GraphQLClient("http://localhost:9002/graphql");
         }
 
-        public async Task<T> sendRequest<T>(string request){
+        public async Task<T> sendRequest<T>(string request, string label){
             
 
             var rq = new GraphQLRequest
@@ -27,7 +27,7 @@ namespace starwars.Client
 
             var graphQLResponse = await graphQLClient.PostAsync(rq);
 
-            var data = graphQLResponse.GetDataFieldAs<T>(typeof(T).Name);
+            var data = graphQLResponse.GetDataFieldAs<T>(label);
 
             return data;
         }

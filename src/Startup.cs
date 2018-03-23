@@ -68,6 +68,7 @@ namespace Example
 
             services.AddSingleton<SearchResultType>();
             services.AddSingleton<StarWarsData>();
+            services.AddSingleton<ExternalData>();     
             services.AddSingleton<StarWarsQuery>();
             services.AddSingleton<StarWarsMutation>();
             services.AddSingleton<HumanType>();
@@ -79,6 +80,8 @@ namespace Example
             services.AddSingleton<HeighEnum>();
             services.AddSingleton<IdGraphType>();
             services.AddSingleton<ReviewType>();
+            services.AddSingleton<SpecieType>();
+            services.AddSingleton<HomeworldType>();
 
             services.AddSingleton<HeighEnum>();
 

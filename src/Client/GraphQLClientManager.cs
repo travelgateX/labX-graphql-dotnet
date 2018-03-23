@@ -35,9 +35,9 @@ namespace starwars.Client
             return GraphQLClientManager.instance;
         }
 
-        public async Task<T> sendRequest<T>(string request)
+        public async Task<T> sendRequest<T>(string request, string label)
         {
-            return await _client.sendRequest<T>(request);
+            return await _client.sendRequest<T>(request, label);
 
         }
     }   
