@@ -11,6 +11,13 @@ namespace GraphQL.StarWars
         {
             Name = "Query";
 
+            Field<SearchResultType>(
+                "search",
+              arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "text", Description = "Text to find" }
+              ),
+                resolve: context => data.GetDroidByIdAsync("2001")
+            );
 
             Field<NonNullGraphType<ListGraphType<ReviewType>>>(
                 "review",
