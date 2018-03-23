@@ -13,7 +13,8 @@ namespace starwars.Client
 
         public GraphQLClient()
         {
-            graphQLClient = new GraphQL.Client.GraphQLClient("http://192.168.0.120:9002/graphql");
+         var url =   Environment.GetEnvironmentVariable("REMOTE_URL");
+            graphQLClient = new GraphQL.Client.GraphQLClient("http://"+url+":9002/graphql");
         }
 
         public async Task<T> sendRequest<T>(string request, string label){

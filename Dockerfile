@@ -15,6 +15,7 @@ FROM microsoft/dotnet:2.1-runtime
 
 ARG MAIN_CLASS
 ENV MAIN_CLASS ${MAIN_CLASS:-undefined}
+ENV REMOTE_URL 127.0.0.1
 
 RUN groupadd -g 666 dotnet \
     && useradd -m -d "/app" -g dotnet -u 666 -s /bin/bash dotnet
