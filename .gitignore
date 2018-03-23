@@ -2,6 +2,7 @@
 
 .vs/
 .idea/
+.vscode/
 *.user
 *.suo
 *.nupkg
