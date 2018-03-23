@@ -12,7 +12,7 @@ namespace Example
         {
             IWebHost host = WebHost.CreateDefaultBuilder(args)
                  .UseContentRoot(System.IO.Directory.GetCurrentDirectory())
-                 .UseUrls("http://*:80") // -> Must match the Kestrel configuration.
+                 .UseUrls("http://*:8080") // -> Must match the Kestrel configuration.
                  .UseStartup<Startup>()
                  .UseLibuv(options =>
                  {
@@ -30,7 +30,7 @@ namespace Example
                      options.Limits.MaxConcurrentConnections = null;             // No limit. Default: null
                      options.Limits.MaxConcurrentUpgradedConnections = null;     // No limit. Default: null
                                                                                  //--- Kestrel endpoints -----------------
-                     options.Listen(IPAddress.Any, 80, listenOptions =>
+                     options.Listen(IPAddress.Any, 8080, listenOptions =>
                      {
                          listenOptions.NoDelay = true;
                      });

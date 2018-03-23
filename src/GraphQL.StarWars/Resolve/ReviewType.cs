@@ -1,6 +1,8 @@
 using GraphQL.Types;
+using GraphQL.StarWars.Types;
+using GraphQL.StarWars.Data;
 
-namespace GraphQL.StarWars.Types
+namespace GraphQL.StarWars.Resolve
 {
     public class ReviewType : ObjectGraphType<Review>
     {

@@ -1,6 +1,6 @@
 using GraphQL.Types;
 
-namespace GraphQL.StarWars.Types
+namespace GraphQL.StarWars.Enum
 {
     public class HeighEnum : EnumerationGraphType<LengthUnit>
     {

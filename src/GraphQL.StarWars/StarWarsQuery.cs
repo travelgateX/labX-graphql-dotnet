@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using GraphQL.StarWars.Data;
+using GraphQL.StarWars.Enum;
+using GraphQL.StarWars.Resolve;
 using GraphQL.StarWars.Types;
 using GraphQL.Types;
 
@@ -11,6 +14,13 @@ namespace GraphQL.StarWars
         {
             Name = "Query";
 
+            Field< NonNullGraphType<ListGraphType<SearchResultType>>>(
+                "search",
+              arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<StringGraphType>> { Name = "text", Description = "Text to find" }
+              ),
+                resolve: context => data.GetSearchResult(context.GetArgument<string>("text"))
+            );
 
             Field<NonNullGraphType<ListGraphType<ReviewType>>>(
                 "review",

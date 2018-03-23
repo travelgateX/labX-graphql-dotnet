@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GraphQL.StarWars.Enum;
 using GraphQL.StarWars.Types;
 
-namespace GraphQL.StarWars
+namespace GraphQL.StarWars.Data
 {
     public class StarWarsData
     {
@@ -15,16 +16,10 @@ namespace GraphQL.StarWars
         private readonly List<Starship> _starShips = new List<Starship>();
         public StarWarsData()
         {
-            foreach (Episodes ep in Enum.GetValues(typeof(Episodes)))
+            foreach (Episodes ep in System.Enum.GetValues(typeof(Episodes)))
             {
                 _reviews.Add(ep, new List<Review>());
             }
-
-            _reviews[Episodes.EMPIRE].Add(new Review()
-            {
-                Stars = 5,
-                Commentary = "Amazing"
-            });
 
             _starShips.Add(new Starship
             {
@@ -58,7 +53,6 @@ namespace GraphQL.StarWars
             {
                 Id = "1000",
                 Name = "Luke",
-                Friends = new[] { "1002", "1003", "2000", "2001" },
                 Mass = 77,
                 Height = 1.72F,
                 AppearsIn = new[] { Episodes.NEWHOPE, Episodes.EMPIRE, Episodes.JEDI },
@@ -69,7 +63,6 @@ namespace GraphQL.StarWars
             {
                 Id = "1001",
                 Name = "Darth Vader",
-                Friends = new[] { "1004" },
                 Mass = 136,
                 Height = 2.02F,
                 AppearsIn = new[] { Episodes.NEWHOPE, Episodes.EMPIRE, Episodes.JEDI },
@@ -80,7 +73,6 @@ namespace GraphQL.StarWars
             {
                 Id = "1002",
                 Name = "Han Solo",
-                Friends = new[] { "1000", "1003", "2001" },
                 Mass = 80,
                 Height = 1.8F,
                 AppearsIn = new[] { Episodes.NEWHOPE, Episodes.EMPIRE, Episodes.JEDI },
@@ -91,7 +83,6 @@ namespace GraphQL.StarWars
             {
                 Id = "1003",
                 Name = "Leia Organa",
-                Friends = new[] { "1000", "1002", "2000", "2001" },
                 Mass = 49,
                 Height = 1.5F,
                 AppearsIn = new[] { Episodes.NEWHOPE, Episodes.EMPIRE, Episodes.JEDI }
@@ -101,7 +92,6 @@ namespace GraphQL.StarWars
             {
                 Id = "1004",
                 Name = "Wilhuff Tarkin",
-                Friends = new[] { "1001" },
                 Mass = 0,
                 Height = 1.8F,
                 AppearsIn = new[] { Episodes.NEWHOPE }
@@ -111,7 +101,6 @@ namespace GraphQL.StarWars
             {
                 Id = "2000",
                 Name = "C-3PO",
-                Friends = new[] { "1000", "1002", "1003", "2001" },
                 AppearsIn = new[] { Episodes.NEWHOPE, Episodes.EMPIRE, Episodes.JEDI },
                 PrimaryFunction = "Protocol"
             });
@@ -119,36 +108,77 @@ namespace GraphQL.StarWars
             {
                 Id = "2001",
                 Name = "R2-D2",
-                Friends = new[] { "1000", "1002", "1003" },
                 AppearsIn = new[] { Episodes.NEWHOPE, Episodes.EMPIRE, Episodes.JEDI },
                 PrimaryFunction = "Astromech"
             });
+
+            _humans[0].Friends = new[] { (StarWarsCharacter)_humans[2], _humans[2], _droids[0], _droids[1] };
+            _humans[1].Friends = new[] { (StarWarsCharacter)_humans[4] };
+            _humans[2].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[3], _droids[1] };
+            _humans[3].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[2], _droids[0], _droids[1] };
+            _humans[4].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[2], _droids[0], _droids[1] };
+            _humans[3].Friends = new[] { (StarWarsCharacter)_humans[1] };
+            _droids[0].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[2], _humans[3], _droids[1] };
+            _droids[1].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[2], _humans[3] };
         }
 
-        public IEnumerable<StarWarsCharacter> GetFriends(StarWarsCharacter character)
+
+        public Task<List<object>> GetSearchResult(string text)
         {
-            if (character == null)
+            List<object> l = new List<object>();
+
+            foreach(var h in _droids)
             {
-                return null;
+                if (h.Name.Contains(text))
+                {
+                    l.Add(h);
+                }
             }
 
-            var friends = new List<StarWarsCharacter>();
-            var lookup = character.Friends;
-            if (lookup != null)
+            foreach (var h in _humans)
             {
-                _humans.Where(h => lookup.Contains(h.Id)).Apply(friends.Add);
-                _droids.Where(d => lookup.Contains(d.Id)).Apply(friends.Add);
+                if (h.Name.Contains(text))
+                {
+                    l.Add(h);
+                }
             }
-            return friends;
+
+            foreach (var h in _starShips)
+            {
+                if (h.Name.Contains(text))
+                {
+                    l.Add(h);
+                }
+            }
+
+            return Task.FromResult(l);
         }
+
 
         public Task<List<Review>> GetReview(Episodes ep)
         {
             return Task.FromResult(_reviews[ep]);
         }
-        public Task<Human> GetHero(Episodes ep)
+
+        public Task<StarWarsCharacter> GetHero(Episodes ep)
         {
-            return Task.FromResult(_humans[0]);
+            if (ep == Episodes.EMPIRE)
+            {
+                return Task.FromResult((StarWarsCharacter)_humans[0]);
+            }
+
+            if (ep == Episodes.NEWHOPE)
+            {
+                return Task.FromResult((StarWarsCharacter)_droids[1]);
+            }
+
+            if (ep == Episodes.JEDI)
+            {
+                return Task.FromResult((StarWarsCharacter)_droids[1]);
+            }
+
+            return null;
+
         }
 
         public Task<StarWarsCharacter> GetCharacter(string id)
@@ -201,11 +231,10 @@ namespace GraphQL.StarWars
             return Task.FromResult(_starShips.FirstOrDefault(h => h.Id == id));
         }
 
-        public Human AddHuman(Human human)
+        public Review AddReview(Episodes ep, Review ri)
         {
-            human.Id = Guid.NewGuid().ToString();
-            _humans.Add(human);
-            return human;
+            _reviews[ep].Add(ri);
+            return ri;
         }
     }
 }

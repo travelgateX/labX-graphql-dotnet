@@ -1,6 +1,9 @@
 using GraphQL;
 using GraphQL.Http;
 using GraphQL.StarWars;
+using GraphQL.StarWars.Data;
+using GraphQL.StarWars.Enum;
+using GraphQL.StarWars.Resolve;
 using GraphQL.StarWars.Types;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Builder;
@@ -29,8 +32,6 @@ namespace Example
                 ServicePointManager.UseNagleAlgorithm = false;              // Default: true
                 ServicePointManager.SetTcpKeepAlive(true, 10000, 10000);
 
-                string auxEndpoint = null;
-                ServicePoint auxServiceMng = null;
 
                 //---Hub entrypoint-------
                 //auxEndpoint = "http://xxx.xxx/xxx.svc";
@@ -65,11 +66,12 @@ namespace Example
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<IDocumentWriter, DocumentWriter>();
 
+            services.AddSingleton<SearchResultType>();
             services.AddSingleton<StarWarsData>();
             services.AddSingleton<StarWarsQuery>();
             services.AddSingleton<StarWarsMutation>();
             services.AddSingleton<HumanType>();
-            services.AddSingleton<HumanInputType>();
+            services.AddSingleton<ReviewInputType>();
             services.AddSingleton<DroidType>();
             services.AddSingleton<StarShipType>();
             services.AddSingleton<CharacterInterface>();

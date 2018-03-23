@@ -1,6 +1,9 @@
+using GraphQL.StarWars.Enum;
 using GraphQL.Types;
+using GraphQL.StarWars.Types;
+using GraphQL.StarWars.Data;
 
-namespace GraphQL.StarWars.Types
+namespace GraphQL.StarWars.Resolve
 {
     public class HumanType : ObjectGraphType<Human>
     {
@@ -25,7 +28,7 @@ namespace GraphQL.StarWars.Types
 
             Field<ListGraphType<CharacterInterface>>(
                 "friends",
-                resolve: context => data.GetFriends(context.Source)
+                resolve: context => context.Source.Friends
             );
 
             Field<ListGraphType<StarShipType>>(

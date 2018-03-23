@@ -1,4 +1,7 @@
-﻿using GraphQL.StarWars.Types;
+﻿using GraphQL.StarWars.Data;
+using GraphQL.StarWars.Enum;
+using GraphQL.StarWars.Resolve;
+using GraphQL.StarWars.Types;
 using GraphQL.Types;
 
 namespace GraphQL.StarWars
@@ -16,19 +19,21 @@ namespace GraphQL.StarWars
     /// </example>
     public class StarWarsMutation : ObjectGraphType<object>
     {
+
+
         public StarWarsMutation(StarWarsData data)
         {
             Name = "Mutation";
 
-            Field<HumanType>(
-                "createHuman",
+            Field<ReviewType>(
+                "createReview",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<HumanInputType>> {Name = "human"}
+                    new QueryArgument<NonNullGraphType<EpisodeEnum>> {Name = "episode" },
+                    new QueryArgument<NonNullGraphType<ReviewInputType>> { Name = "review" }
                 ),
                 resolve: context =>
                 {
-                    var human = context.GetArgument<Human>("human");
-                    return data.AddHuman(human);
+                    return data.AddReview(context.GetArgument<Episodes>("episode"), context.GetArgument<Review>("review"));
                 });
         }
     }

@@ -1,3 +1,4 @@
+using GraphQL.StarWars.Enum;
 using GraphQL.Types;
 
 namespace GraphQL.StarWars.Types

@@ -1,9 +1,13 @@
+using GraphQL.StarWars.Enum;
 using GraphQL.Types;
+using GraphQL.StarWars.Types;
+using GraphQL.StarWars.Data;
 
-namespace GraphQL.StarWars.Types
+namespace GraphQL.StarWars.Resolve
 {
     public class StarShipType : ObjectGraphType<Starship>
     {
+
         public StarShipType(StarWarsData data)
         {
             Name = "Starship";
@@ -20,5 +24,6 @@ namespace GraphQL.StarWars.Types
                 resolve: context => data.GetHeighOrLenght(context.GetArgument<LengthUnit>("unit", LengthUnit.METER), context.Source.Length)
             );
         }
+
     }
 }
