@@ -1,6 +1,6 @@
 # labx-graphql-dotnet
 
----
+
 Proyecto para probar la librería dotnet para GraphQL.
 
 
@@ -30,12 +30,9 @@ Hemos ultilizado los entornos Visual Studio Code y Visual Studio 2017 con el [SD
 * "GraphQL.Client" Version="1.0.2"
 * "Microsoft.AspNetCore.All" Version="2.0.0"
 
-### Cómo contribuir
-
-
 ### Autor/es
----
-Equipo TravelGateX de .NET formado por:
+
+##### Equipo TravelGateX de .NET formado por:
 * Ruben Caballero
 * Benet Oliver
 * Carlos Acedo
@@ -45,6 +42,5 @@ Equipo TravelGateX de .NET formado por:
 * Jose Martin
 * **Y con ayuda de todo el equipo de TravelGateX**
 
-### Licencia 
----
-[LICENCIA](https://github.com/travelgateX/labX-graphql-dotnet)
+### Licencia
+
