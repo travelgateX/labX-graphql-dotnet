@@ -13,7 +13,7 @@ namespace starwars.Client
 
         public GraphQLClient()
         {
-            graphQLClient = new GraphQL.Client.GraphQLClient("http://localhost:9002/graphql");
+            graphQLClient = new GraphQL.Client.GraphQLClient("http://192.168.0.120:9002/graphql");
         }
 
         public async Task<T> sendRequest<T>(string request, string label){

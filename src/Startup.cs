@@ -33,10 +33,9 @@ namespace Example
                 ServicePointManager.SetTcpKeepAlive(true, 10000, 10000);
 
 
-                //---Hub entrypoint-------
-                //auxEndpoint = "http://xxx.xxx/xxx.svc";
-                //auxServiceMng = ServicePointManager.FindServicePoint(new Uri(auxEndpoint));
-                //auxServiceMng.ConnectionLeaseTimeout = 60 * 1000; // 5 minutes -> 1 minute
+           var auxEndpoint = "http://localhost:9002/graphql";
+                var auxServiceMng = ServicePointManager.FindServicePoint(new Uri(auxEndpoint));
+                auxServiceMng.ConnectionLeaseTimeout = 60 * 1000; // 5 minutes -> 1 minute
             }
             catch (Exception)
             {
