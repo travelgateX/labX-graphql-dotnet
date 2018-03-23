@@ -17,9 +17,9 @@ namespace GraphQL.StarWars.Resolve
             {
                 Name = "Droid"
             };
-            var nestedObjType2 = new StarShipType(data)
+            var nestedObjType2 = new StarshipType(data)
             {
-                Name = "StarShip"
+                Name = "Starship"
             };
 
             AddPossibleType(nestedObjType);

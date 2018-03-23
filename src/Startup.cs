@@ -68,17 +68,20 @@ namespace Example
 
             services.AddSingleton<SearchResultType>();
             services.AddSingleton<StarWarsData>();
+            services.AddSingleton<ExternalData>();     
             services.AddSingleton<StarWarsQuery>();
             services.AddSingleton<StarWarsMutation>();
             services.AddSingleton<HumanType>();
             services.AddSingleton<ReviewInputType>();
             services.AddSingleton<DroidType>();
-            services.AddSingleton<StarShipType>();
+            services.AddSingleton<StarshipType>();
             services.AddSingleton<CharacterInterface>();
             services.AddSingleton<EpisodeEnum>();
             services.AddSingleton<HeighEnum>();
             services.AddSingleton<IdGraphType>();
             services.AddSingleton<ReviewType>();
+            services.AddSingleton<SpecieType>();
+            services.AddSingleton<HomeworldType>();
 
             services.AddSingleton<HeighEnum>();
 

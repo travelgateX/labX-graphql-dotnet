@@ -226,7 +226,7 @@ namespace GraphQL.StarWars.Data
             return Task.FromResult(_droids.FirstOrDefault(h => h.Id == id));
         }
 
-        public Task<Starship> GetStarShipByIdAsync(string id)
+        public Task<Starship> GetStarshipByIdAsync(string id)
         {
             return Task.FromResult(_starShips.FirstOrDefault(h => h.Id == id));
         }
