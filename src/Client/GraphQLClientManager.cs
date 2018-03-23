@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace starwars
+namespace starwars.Client
 {
     public class GraphQLClientManager
     {
@@ -11,9 +11,12 @@ namespace starwars
 
         private static GraphQLClientManager instance;
 
+        private GraphQLClient _client;
+
+
         private GraphQLClientManager()
         {
-            //TODO : create http
+            this._client = new GraphQLClient();
 
         }
 
@@ -32,6 +35,10 @@ namespace starwars
             return GraphQLClientManager.instance;
         }
 
+        public async Task<T> sendRequest<T>(string request)
+        {
+            return await _client.sendRequest<T>(request);
 
-    }
+        }
+    }   
 }

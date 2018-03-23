@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Http;
 
 namespace starwars.Client
 {
-    public class Client
+    public class GraphQLClient
     {
-        GraphQLClient graphQLClient;
+        GraphQL.Client.GraphQLClient graphQLClient;
 
-        public Client()
+        public GraphQLClient()
         {
-            graphQLClient = new GraphQLClient("http://localhost:9002/graphql");
+            graphQLClient = new GraphQL.Client.GraphQLClient("http://localhost:9002/graphql");
         }
 
         public async Task<T> sendRequest<T>(string request){
