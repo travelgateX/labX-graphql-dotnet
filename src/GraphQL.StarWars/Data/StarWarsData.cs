@@ -118,7 +118,6 @@ namespace GraphQL.StarWars.Data
             _humans[3].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[2], _droids[0], _droids[1] };
             _humans[4].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[2], _droids[0], _droids[1] };
             _humans[3].Friends = new[] { (StarWarsCharacter)_humans[1] };
-
             _droids[0].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[2], _humans[3], _droids[1] };
             _droids[1].Friends = new[] { (StarWarsCharacter)_humans[0], _humans[2], _humans[3] };
         }
@@ -160,9 +159,26 @@ namespace GraphQL.StarWars.Data
         {
             return Task.FromResult(_reviews[ep]);
         }
-        public Task<Human> GetHero(Episodes ep)
+
+        public Task<StarWarsCharacter> GetHero(Episodes ep)
         {
-            return Task.FromResult(_humans[0]);
+            if (ep == Episodes.EMPIRE)
+            {
+                return Task.FromResult((StarWarsCharacter)_humans[0]);
+            }
+
+            if (ep == Episodes.NEWHOPE)
+            {
+                return Task.FromResult((StarWarsCharacter)_droids[1]);
+            }
+
+            if (ep == Episodes.JEDI)
+            {
+                return Task.FromResult((StarWarsCharacter)_droids[1]);
+            }
+
+            return null;
+
         }
 
         public Task<StarWarsCharacter> GetCharacter(string id)

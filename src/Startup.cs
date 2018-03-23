@@ -32,8 +32,6 @@ namespace Example
                 ServicePointManager.UseNagleAlgorithm = false;              // Default: true
                 ServicePointManager.SetTcpKeepAlive(true, 10000, 10000);
 
-                string auxEndpoint = null;
-                ServicePoint auxServiceMng = null;
 
                 //---Hub entrypoint-------
                 //auxEndpoint = "http://xxx.xxx/xxx.svc";
