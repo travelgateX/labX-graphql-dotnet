@@ -76,6 +76,10 @@ namespace Example
             services.AddSingleton<EpisodeEnum>();
             services.AddSingleton<HeighEnum>();
             services.AddSingleton<IdGraphType>();
+            services.AddSingleton<ReviewType>();
+
+            services.AddSingleton<HeighEnum>();
+
             services.AddSingleton<ISchema, StarWarsSchema>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
