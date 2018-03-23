@@ -5,10 +5,10 @@ using GraphQL.StarWars.Data;
 
 namespace GraphQL.StarWars.Resolve
 {
-    public class StarShipType : ObjectGraphType<Starship>
+    public class StarshipType : ObjectGraphType<Starship>
     {
 
-        public StarShipType(StarWarsData data)
+        public StarshipType(StarWarsData data)
         {
             Name = "Starship";
 

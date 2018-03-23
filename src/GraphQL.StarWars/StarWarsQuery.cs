@@ -23,19 +23,19 @@ namespace GraphQL.StarWars
             );
 
             Field<NonNullGraphType<ListGraphType<ReviewType>>>(
-                "review",
+                "reviews",
               arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<EpisodeEnum>> { Name = "Episode", Description = "Episode of star wars" }
+                    new QueryArgument<NonNullGraphType<EpisodeEnum>> { Name = "episode", Description = "Episode of star wars" }
               ),
-                 resolve: context => data.GetReview(context.GetArgument<Episodes>("Episode"))
+                 resolve: context => data.GetReview(context.GetArgument<Episodes>("episode"))
              );
 
             Field<CharacterInterface>(
                 "hero",
                 arguments: new QueryArguments(
-                    new QueryArgument<EpisodeEnum> { Name = "Episode", Description = "Episode of star wars", DefaultValue = Episodes.NEWHOPE }
+                    new QueryArgument<EpisodeEnum> { Name = "episode", Description = "Episode of star wars", DefaultValue = Episodes.NEWHOPE }
                 ),
-                resolve: context => data.GetHero(context.GetArgument<Episodes>("Episode", Episodes.NEWHOPE))
+                resolve: context => data.GetHero(context.GetArgument<Episodes>("episode", Episodes.NEWHOPE))
             );
 
             Field<CharacterInterface>(
@@ -62,12 +62,12 @@ namespace GraphQL.StarWars
                 resolve: context => data.GetDroidByIdAsync(context.GetArgument<string>("id"))
             );
 
-            Field<StarShipType>(
+            Field<StarshipType>(
                 "starship",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id", Description = "id of the starship" }
                 ),
-                resolve: context => data.GetStarShipByIdAsync(context.GetArgument<string>("id"))
+                resolve: context => data.GetStarshipByIdAsync(context.GetArgument<string>("id"))
             );
 
             Field<SpecieType>(

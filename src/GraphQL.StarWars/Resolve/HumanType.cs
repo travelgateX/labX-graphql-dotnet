@@ -31,7 +31,7 @@ namespace GraphQL.StarWars.Resolve
                 resolve: context => context.Source.Friends
             );
 
-            Field<ListGraphType<StarShipType>>(
+            Field<ListGraphType<StarshipType>>(
                 "starships",
                 resolve: context => context.Source.Starships
             );
